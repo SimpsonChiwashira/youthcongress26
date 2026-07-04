@@ -13,7 +13,7 @@
 <body>
 
 <header>
-  <h1>🧠 Live Quiz</h1>
+  <h1>🧠 Activities</h1>
 </header>
 
 <nav>
@@ -21,20 +21,9 @@
   <a href="schedule.html">Schedule</a>
   <a href="gallery.html">Gallery</a>
   <a href="resources.html">Resources</a>
-  <a href="quiz.html">Quiz</a>
+  <a href="quiz.html">Activities</a>
 </nav>
-<!--  
-<div class="card">
-  <h2>Join Game</h2>
-  <input id="name" placeholder="Your name">
-  <button onclick="joinGame()">Join</button>
-</div>
 
-<div id="quizBox" class="card" style="display:none;">
-  <h2 id="question"></h2>
-  <div id="answers"></div>
-</div>
--->
 <div class="card">
   <h2>Quiz Instructions</h2>
   <p>1. The quiz will be live during the congress.</p>
@@ -45,11 +34,20 @@
   <p> This is the code to join the quiz:</p>
   <a href="" target="_blank">Click here to join the quiz</a>
 </div>
-
+<div class="card">
+  <h3>Saint Speed Challenge</h3>
+  <p>Choose the saint before the timer runs out. Correct answers earn points.</p>
+  <input id="challengeName" placeholder="Your name">
+  <p><strong>Score:</strong> <span id="challengeScore">0</span> | <strong>Time:</strong> <span id="challengeTime">15</span>s</p>
+  <h3 id="challengeClue">Press start when you are ready.</h3>
+  <div id="challengeAnswers"></div>
+  <p id="challengeMessage"></p>
+  <button onclick="startSaintChallenge()">Start Challenge</button>
+</div>
 
 <div class="card">
-  <h2>🏆 Leaderboard</h2>
-  <ul id="scores"></ul>
+  <h2>&#127942; Saint Challenge Leaderboard</h2>
+  <div id="scores" class="leaderboard-list"></div>
 </div>
 
 <!-- Host Panel 

@@ -49,6 +49,115 @@ const questions = [
 { q:"Meaning of Gospel?", a:["Good News","Holy Writing","Law"], correct:0 }
 ];
 
+// ================= SAINT SPEED CHALLENGE =================
+const saintChallengeQuestions = [
+{ clue:"Born in Sudan and known for forgiveness after great suffering.", a:["St. Josephine Bakhita","St. Monica","St. Joan of Arc","St. Therese of Lisieux"], correct:0 },
+{ clue:"A young Ugandan martyr who stayed courageous in faith.", a:["St. Kizito","St. Augustine","St. Anthony of Egypt","St. Francis of Assisi"], correct:0 },
+{ clue:"A North African saint who became a great teacher of the Church.", a:["St. Augustine of Hippo","St. Dominic Savio","St. Tarcisius","St. John Paul II"], correct:0 },
+{ clue:"Prayed with patience for her son Augustine.", a:["St. Monica","St. Felicity","St. Maria Goretti","St. Perpetua"], correct:0 },
+{ clue:"A teenage saint known for joy, kindness, and holiness.", a:["St. Dominic Savio","St. Moses the Black","St. Cyprian","St. Athanasius"], correct:0 },
+{ clue:"Protected young people and became one of the Uganda Martyrs.", a:["St. Charles Lwanga","St. Martin de Porres","St. Francis","St. Anthony"], correct:0 },
+{ clue:"A young saint known for forgiveness and purity of heart.", a:["St. Maria Goretti","St. Teresa of Avila","St. Monica","St. Felicity"], correct:0 },
+{ clue:"A young saint who loved the Eucharist deeply.", a:["St. Tarcisius","St. Augustine","St. Moses the Black","St. John Bosco"], correct:0 },
+{ clue:"Loved hiking, friendship, prayer, and helping the poor.", a:["St. Pier Giorgio Frassati","St. Kizito","St. Cyprian","St. Anthony of Egypt"], correct:0 },
+{ clue:"Started World Youth Day and loved young people.", a:["St. John Paul II","St. Francis of Assisi","St. Dominic Savio","St. Athanasius"], correct:0 },
+{ clue:"A young North African mother who showed great courage.", a:["St. Perpetua","St. Therese of Lisieux","St. Joan of Arc","St. Bakhita"], correct:0 },
+{ clue:"Changed his life and became a peaceful monk in Egypt.", a:["St. Moses the Black","St. Charles Lwanga","St. Kizito","St. Tarcisius"], correct:0 }
+];
+
+let challengeScore = 0;
+let challengeIndex = 0;
+let challengeTime = 15;
+let challengeTimer = null;
+let challengeRunning = false;
+let challengeOrder = [];
+
+function shuffleArray(items) {
+return [...items].sort(() => Math.random() - 0.5);
+}
+
+function startSaintChallenge() {
+const name = document.getElementById("challengeName")?.value.trim();
+if (!name) return alert("Enter your name first");
+
+challengeScore = 0;
+challengeIndex = 0;
+challengeRunning = true;
+challengeOrder = shuffleArray(saintChallengeQuestions).slice(0, 8);
+
+document.getElementById("challengeScore").innerText = challengeScore;
+document.getElementById("challengeMessage").innerText = "";
+showSaintChallengeQuestion();
+}
+
+function showSaintChallengeQuestion() {
+clearInterval(challengeTimer);
+
+if (challengeIndex >= challengeOrder.length) {
+finishSaintChallenge();
+return;
+}
+
+const q = challengeOrder[challengeIndex];
+const clue = document.getElementById("challengeClue");
+const answers = document.getElementById("challengeAnswers");
+const time = document.getElementById("challengeTime");
+
+challengeTime = 15;
+clue.innerText = q.clue;
+time.innerText = challengeTime;
+answers.innerHTML = "";
+
+shuffleArray(q.a.map((text, index) => ({ text, isCorrect: index === q.correct }))).forEach(option => {
+const btn = document.createElement("button");
+btn.innerText = option.text;
+btn.onclick = () => chooseSaintChallengeAnswer(option.isCorrect);
+answers.appendChild(btn);
+});
+
+challengeTimer = setInterval(() => {
+challengeTime--;
+time.innerText = challengeTime;
+
+if (challengeTime <= 0) {
+chooseSaintChallengeAnswer(false);
+}
+}, 1000);
+}
+
+function chooseSaintChallengeAnswer(isCorrect) {
+if (!challengeRunning) return;
+
+clearInterval(challengeTimer);
+
+if (isCorrect) {
+challengeScore += 10 + challengeTime;
+document.getElementById("challengeMessage").innerText = "Correct! +" + (10 + challengeTime) + " points";
+} else {
+document.getElementById("challengeMessage").innerText = "Time up or incorrect. Next one!";
+}
+
+document.getElementById("challengeScore").innerText = challengeScore;
+challengeIndex++;
+setTimeout(showSaintChallengeQuestion, 900);
+}
+
+function finishSaintChallenge() {
+challengeRunning = false;
+clearInterval(challengeTimer);
+
+const name = document.getElementById("challengeName").value.trim();
+document.getElementById("challengeClue").innerText = "Challenge complete!";
+document.getElementById("challengeAnswers").innerHTML = "";
+document.getElementById("challengeMessage").innerText = "Final score: " + challengeScore;
+
+db.ref("saintChallengeScores").push({
+name,
+score: challengeScore,
+createdAt: Date.now()
+});
+}
+
 // ================= PLAYER =================
 let playerId = null;
 
@@ -151,12 +260,14 @@ b.style.background = idx === correct ? "green" : "red";
 });
 });
 
-// ================= LEADERBOARD =================
-db.ref("players").on("value", snap => {
+// ================= SAINT CHALLENGE LEADERBOARD =================
+db.ref("saintChallengeScores").on("value", snap => {
 const data = snap.val();
 if (!data) return;
 
-const sorted = Object.values(data).sort((a,b)=>b.score-a.score);
+const sorted = Object.values(data)
+.sort((a,b)=>b.score-a.score)
+.slice(0,10);
 
 const list = document.getElementById("scores");
 if (!list) return;
@@ -164,9 +275,10 @@ if (!list) return;
 list.innerHTML = "";
 
 sorted.forEach((p,i)=>{
-const li = document.createElement("li");
-li.innerText = `${i+1}. ${p.name} - ${p.score}`;
-list.appendChild(li);
+const row = document.createElement("div");
+row.className = "leaderboard-row";
+row.innerText = `${i+1}. ${p.name} - ${p.score}`;
+list.appendChild(row);
 });
 });
 
@@ -221,5 +333,6 @@ document.body.innerHTML = `
 function resetGame() {
 db.ref("game").remove();
 db.ref("players").remove();
+db.ref("saintChallengeScores").remove();
 alert("Reset done 🔄");
 }

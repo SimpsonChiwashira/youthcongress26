@@ -8,10 +8,22 @@
 
   <style>
     .hero {
-      background: linear-gradient(135deg, purple, blue);
+      background: linear-gradient(135deg, rgba(0, 122, 52, 0.96) 0%, rgba(0, 122, 52, 0.96) 34%, rgba(255, 209, 0, 0.94) 34%, rgba(255, 209, 0, 0.94) 50%, rgba(0, 0, 0, 0.88) 50%, rgba(0, 0, 0, 0.88) 54%, rgba(222, 32, 16, 0.95) 54%, rgba(222, 32, 16, 0.95) 100%);
       color: white;
-      padding: 40px 20px;
+      padding: 24px 16px;
       border-radius: 0 0 20px 20px;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.35);
+    }
+
+    .hero-logo {
+      width: 88px;
+      max-width: 35vw;
+      height: auto;
+      margin-bottom: 8px;
+      background: white;
+      border-radius: 50%;
+      padding: 8px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.25);
     }
 
     .grid {
@@ -46,8 +58,10 @@
 <body>
 
 <div class="hero">
-  <h1>🔥 Zimbabwe Catholic Chaplaincy England and Wales Youth Congress 2026 🔥</h1>
-  <p>Faith • Fun • Fellowship • Food (Very important!😄)</p>
+  <img class="hero-logo" src="logo.png" alt="Zimbabwe Catholic Chaplaincy England and Wales logo">
+  <h1>Zimbabwe Catholic Chaplaincy England and Wales Youth Congress 2026 </h1>
+  <p>Peace be with you. Take courage; I have overcome the world." – John 16:33</p>
+  <p> Peace • Joy • Fellowship • Food (Very Important!😄)</p>
 </div>
 
 <nav>
@@ -55,14 +69,14 @@
   <a href="schedule.html">Schedule</a>
   <a href="gallery.html">Gallery</a>
   <a href="resources.html">Resources</a>
-  <a href="quiz.html">Quiz</a>
+  <a href="quiz.html">Activities</a>
 </nav>
 
 <!-- QUICK INFO -->
 
 <div class="card">
   <h2>📍 Welcome</h2>
-  <p>Welcome to the Youth Congress! If you are here, congratulations — you made it before the WiFi broke 😄</p>
+  <p>Welcome to the Youth Congress! If you are here, congratulations you made it before the WiFi broke 😄</p>
 </div>
 
 <!-- Arrival SNAPSHOT -->
@@ -72,7 +86,7 @@
   <p>📝 Registration </p>
   <p>🍽 Dinner (very important)</p>
   <p>� Mass</p>
-  <p>🎶 Evening Praise & Worship</p>
+  <p>🧊Ice breaker activities and quiz</p>
 </div>
 
 <!-- TODAY SNAPSHOT 
@@ -101,24 +115,62 @@
 <div class="card">
   <h2>🙏 Our Theme</h2>
   <p class="quote">"Peace be with you. Take courage; I have overcome the world." – John 16:33</p>
-</div>
-
-<!-- FUN SECTION -->
-
-<div class="card">
-  <h2>😂 Youth Corner</h2>
-  <p>If you fall asleep during the talk… We will assume you are in deep prayer 😇 But we cant promise you wont be a meme by the end of congress 😄</p>
+  <p>We are called to live in peace, joy, and fellowship with one another. Let us embrace this call and support one another on our journey of faith.</p>
 </div>
 
 <!-- ANNOUNCEMENTS -->
 
 <div class="card">
-  <h2>📢 Announcements</h2>
-  <p>👉 Please don’t lose your badge</p>
-  <p>👉 If lost, check under your chair first</p>
+  <h2>📢 Announcements and housekeeping</h2>
+  <p>👉 Please don’t lose your badge, if you do please report it immediately</p>
+  <p>👉 Always keep your badge visible at all times</p>
   <p>👉 WiFi password will be revealed… maybe 😏</p>
 </div>
 
+<!-- FUN SECTION -->
+<div class="card">
+  <h2>😂 Youth Corner</h2>
+  <p>If you fall asleep during the talk… We will assume you are in deep prayer 😇 But 
+we can't promise you won't be a meme by the end of congress 😄</p>
+</div>
+
+<div class="card">
+  <h3>Saint of the Moment ✨</h3>
+  <p id="saint"></p>
+  <button onclick="newSaint()">Show</button>
+</div>
+
+
+<script>
+const saints = [
+  "St. Augustine of Hippo was born in North Africa and became a great teacher of the Church",
+  "St. Monica, mother of St. Augustine, prayed with patience and never gave up hope",
+  "St. Josephine Bakhita was born in Sudan and became a joyful witness to forgiveness",
+  "St. Charles Lwanga of Uganda protected young people and stayed brave in his faith",
+  "St. Kizito of Uganda was one of the youngest martyrs and stayed courageous",
+  "St. Perpetua was a young mother from North Africa who showed great courage",
+  "St. Felicity was a young African martyr and loyal friend in faith",
+  "St. Moses the Black changed his life and became a peaceful monk in Egypt",
+  "St. Anthony of Egypt is called the father of monks and loved prayer in the desert",
+  "St. Athanasius of Alexandria defended the faith with boldness",
+  "St. Cyprian of Carthage was an African bishop who led the Church with courage",
+  "St. Martin de Porres served the poor, the sick, and people who were forgotten",
+  "St. Dominic Savio was a teenage saint who chose joy, kindness, and holiness",
+  "St. Maria Goretti was a young saint known for forgiveness and purity of heart",
+  "St. Tarcisius was a young saint who loved the Eucharist deeply",
+  "St. Therese of Lisieux became a saint by doing small things with great love",
+  "St. Pier Giorgio Frassati loved hiking, friendship, prayer, and helping the poor",
+  "St. Joan of Arc was a teenager when she led with courage and trusted God",
+  "St. John Paul II loved youth and started World Youth Day",
+  "St. Francis of Assisi loved creation, peace, and simple living"
+];
+
+
+function newSaint() {
+  const random = saints[Math.floor(Math.random() * saints.length)];
+  document.getElementById("saint").innerText = random;
+}
+</script>
 <!-- QUICK NAV TILES -->
 
 <div class="card">
@@ -129,7 +181,6 @@
       📅 Schedule
     </div>
 
-```
 <div class="tile" onclick="location.href='gallery.html'">
   📸 Gallery
 </div>
@@ -139,10 +190,8 @@
 </div>
 
 <div class="tile" onclick="location.href='quiz.html'">
-  🧠 Quiz
+  🧠 Activities
 </div>
-```
-
   </div>
 </div>
 
