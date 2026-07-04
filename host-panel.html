@@ -1,0 +1,39 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Host Panel</title>
+  <link rel="stylesheet" href="style.css">
+
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+  
+</head>
+
+<body>
+
+<header>
+  <h1>👑 LIVE CONTROL PANEL</h1>
+</header>
+
+<div class="card">
+  <button onclick="startQuiz()">▶ Start</button>
+  <button onclick="nextQuestion()">➡ Next</button>
+  <button onclick="toggleReveal()">👀 Reveal</button>
+  <button onclick="endQuiz()">🏁 End + Podium</button>
+  <button onclick="resetGame()">🔄 Reset Quiz</button>
+  
+</div>
+
+<script src="quiz.js"></script>
+
+<script>
+function toggleReveal() {
+  db.ref("game/reveal").once("value", snap => {
+    db.ref("game/reveal").set(!snap.val());
+  });
+}
+</script>
+
+</body>
+</html>

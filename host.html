@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Host Login</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+  <h1>👑 Host Login</h1>
+</header>
+
+<div class="card">
+  <input id="pin" placeholder="Enter PIN">
+  <button onclick="login()">Enter</button>
+</div>
+
+<script>
+const PIN = "2026";
+
+function login() {
+  if (document.getElementById("pin").value === PIN) {
+    window.location.href = "host-panel.html";
+  } else {
+    alert("Wrong PIN 😅");
+  }
+}
+</script>
+
+</body>
+</html>
