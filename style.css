@@ -1,6 +1,8 @@
 body {
   font-family: Arial;
   margin: 0;
+  font-size: 18px;
+  line-height: 1.5;
   background-color: #f4f6f9;
   background-image:
     linear-gradient(30deg, rgba(0, 121, 52, 0.06) 12%, transparent 12.5%, transparent 87%, rgba(0, 121, 52, 0.06) 87.5%, rgba(0, 121, 52, 0.06)),
@@ -15,25 +17,46 @@ body {
 header {
   background: linear-gradient(135deg, #007a34 0%, #007a34 32%, #ffd100 32%, #ffd100 49%, #000 49%, #000 53%, #de2010 53%, #de2010 100%);
   color: white;
-  padding: 20px;
+  padding: 28px 16px;
+}
+
+h1 {
+  font-size: clamp(2rem, 7vw, 3.2rem);
+  line-height: 1.15;
+  margin: 0.35em 0;
+}
+
+h2 {
+  font-size: clamp(1.55rem, 5vw, 2.2rem);
+  line-height: 1.2;
+}
+
+h3 {
+  font-size: clamp(1.3rem, 4.5vw, 1.7rem);
+  line-height: 1.25;
 }
 
 nav {
   background: #222;
-  padding: 10px;
+  padding: 12px 8px;
 }
 
 nav a {
+  display: inline-block;
   color: white;
-  margin: 10px;
+  margin: 6px 8px;
+  padding: 6px 2px;
   text-decoration: none;
+  font-size: 1.05rem;
 }
 
 .card {
   background: white;
   margin: 15px auto;
-  padding: 20px;
+  padding: 24px;
   max-width: 700px;
+  width: calc(100% - 30px);
+  box-sizing: border-box;
   border-radius: 10px;
   box-shadow: 0 4px 16px rgba(0,0,0,0.08);
 }
@@ -42,10 +65,11 @@ button {
   background: green;
   border: none;
   color: white;
-  padding: 10px 15px;
+  padding: 12px 18px;
   border-radius: 8px;
   margin: 5px;
   cursor: pointer;
+  font-size: 1rem;
 }
 
 button:hover {
@@ -53,11 +77,12 @@ button:hover {
 }
 
 input {
-  padding: 10px;
+  padding: 12px;
   border: 1px solid #ccc;
   border-radius: 8px;
   max-width: 260px;
   width: 80%;
+  font-size: 1rem;
 }
 
 #challengeAnswers {
@@ -76,4 +101,34 @@ input {
   padding: 10px 14px;
   border-radius: 8px;
   font-weight: bold;
+}
+
+@media (max-width: 600px) {
+  body {
+    font-size: 20px;
+  }
+
+  header {
+    padding: 34px 14px;
+  }
+
+  nav {
+    padding: 12px 6px;
+  }
+
+  nav a {
+    font-size: 1.1rem;
+    margin: 5px 6px;
+    padding: 8px 4px;
+  }
+
+  .card {
+    margin: 12px auto;
+    padding: 22px 18px;
+    width: calc(100% - 18px);
+  }
+
+  button {
+    min-height: 46px;
+  }
 }
