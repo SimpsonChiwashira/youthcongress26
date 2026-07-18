@@ -14,43 +14,43 @@ firebase.initializeApp(firebaseConfig);
 const db = firebase.database();
 
 // ================= QUESTIONS (CLEAN SINGLE SOURCE) =================
-const questions = [
-{ q:"What is the traditional Shona instrument made of metal keys bound to a wooden soundboard inside a calabash?", a:["Marimba","Mbira","Hosho"], correct:1 },
-{ q:"If you visit elders in Zimbabwe to show respect, what gesture should you do?", a:["High five","Clapping hands (Kuombera)","Fist bump"], correct:1 },
-{ q:"What is Zimbabwe's national dish made from maize meal?", a:["Sadza","Mupunga","Amadumbe"], correct:0 },
-{ q:"Which waterfall is called 'Mosi-oa-Tunya'?", a:["Victoria Falls","Mutarazi Falls","Bridal Veil Falls"], correct:0 },
-{ q:"What does the Zimbabwe bird represent?", a:["Peace and history","Hunting industry","Speed"], correct:0 },
-{ q:"What is bride price called in Ndebele culture?", a:["Roora","Lobola","Nhaka"], correct:1 },
-{ q:"Which stone city gave Zimbabwe its name?", a:["Khami","Great Zimbabwe","Dhlo Dhlo"], correct:1 },
-{ q:"What fabric is used in Zimbabwe celebrations?", a:["Kente","Chitenge","Dashiki"], correct:1 },
-{ q:"What does 'Muzukuru' mean?", a:["Uncle","Niece/Grandchild","Cousin"], correct:1 },
-{ q:"Which month is sacred (no weddings)?", a:["April","August","November"], correct:2 },
+const saintChallengeQuestions = [
+{ clue:"What is the traditional Shona instrument made of metal keys bound to a wooden soundboard inside a calabash?", a:["Marimba","Mbira","Hosho"], correct:1 },
+{ clue:"If you visit elders in Zimbabwe to show respect, what gesture should you do?", a:["High five","Clapping hands (Kuombera)","Fist bump"], correct:1 },
+{ clue:"What is Zimbabwe's national dish made from maize meal?", a:["Sadza","Mupunga","Amadumbe"], correct:0 },
+{ clue:"Which waterfall is called 'Mosi-oa-Tunya'?", a:["Victoria Falls","Mutarazi Falls","Bridal Veil Falls"], correct:0 },
+{ clue:"What does the Zimbabwe bird represent?", a:["Peace and history","Hunting industry","Speed"], correct:0 },
+{ clue:"What is bride price called in Ndebele culture?", a:["Roora","Lobola","Nhaka"], correct:1 },
+{ clue:"Which stone city gave Zimbabwe its name?", a:["Khami","Great Zimbabwe","Dhlo Dhlo"], correct:1 },
+{ clue:"What fabric is used in Zimbabwe celebrations?", a:["Kente","Chitenge","Dashiki"], correct:1 },
+{ clue:"What does 'Muzukuru' mean?", a:["Uncle","Niece/Grandchild","Cousin"], correct:1 },
+{ clue:"Which month is sacred (no weddings)?", a:["April","August","November"], correct:2 },
 
-{ q:"Who is patron saint of youth?", a:["St John Bosco","St Francis","St Anthony"], correct:0 },
-{ q:"Which saint was martyred in Zimbabwe 1561?", a:["Gonçalo da Silveira","St Kizito","Fr Chang"], correct:0 },
-{ q:"Youth guild dedicated to Mary?", a:["Sacred Heart","St Anne","Legion of Mary"], correct:2 },
-{ q:"Vestment colour in Ordinary Time?", a:["Purple","Green","White"], correct:1 },
-{ q:"Modern teen beatified saint?", a:["Carlo Acutis","St Tarcisius","St Dominic Savio"], correct:0 },
-{ q:"Prayer with beads?", a:["Angelus","Rosary","Chaplet"], correct:1 },
-{ q:"How many Sacraments?", a:["3","5","7"], correct:2 },
-{ q:"Holy Spirit feast?", a:["Pentecost","Ascension","Epiphany"], correct:0 },
-{ q:"Head of Catholic Church?", a:["Archbishop","Pope","Patriarch"], correct:1 },
-{ q:"African martyrs?", a:["Uganda Martyrs","Egypt Saints","Algeria Monks"], correct:0 },
+{ clue:"Who is patron saint of youth?", a:["St John Bosco","St Francis","St Anthony"], correct:0 },
+{ clue:"Which saint was martyred in Zimbabwe 1561?", a:["Gonçalo da Silveira","St Kizito","Fr Chang"], correct:0 },
+{ clue:"Youth guild dedicated to Mary?", a:["Sacred Heart","St Anne","Legion of Mary"], correct:2 },
+{ clue:"Vestment colour in Ordinary Time?", a:["Purple","Green","White"], correct:1 },
+{ clue:"Modern teen beatified saint?", a:["Carlo Acutis","St Tarcisius","St Dominic Savio"], correct:0 },
+{ clue:"Prayer with beads?", a:["Angelus","Rosary","Chaplet"], correct:1 },
+{ clue:"How many Sacraments?", a:["3","5","7"], correct:2 },
+{ clue:"Holy Spirit feast?", a:["Pentecost","Ascension","Epiphany"], correct:0 },
+{ clue:"Head of Catholic Church?", a:["Archbishop","Pope","Patriarch"], correct:1 },
+{ clue:"African martyrs?", a:["Uganda Martyrs","Egypt Saints","Algeria Monks"], correct:0 },
 
-{ q:"Books in Catholic OT?", a:["39","46","27"], correct:1 },
-{ q:"David defeated?", a:["Solomon","Samson","David"], correct:2 },
-{ q:"Mount of Ten Commandments?", a:["Sinai","Tabor","Calvary"], correct:0 },
-{ q:"First witness of Resurrection?", a:["Peter","Mary Magdalene","John"], correct:1 },
-{ q:"Theological virtues?", a:["Peace Joy Kindness","Faith Hope Love","Wisdom Knowledge"], correct:1 },
-{ q:"Lions den prophet?", a:["Daniel","Isaiah","Jeremiah"], correct:0 },
-{ q:"Shortest verse?", a:["Jesus wept","Rejoice","Pray"], correct:0 },
-{ q:"Peter denied Jesus how many times?", a:["1","2","3"], correct:2 },
-{ q:"Book of 150 songs?", a:["Proverbs","Psalms","Ecclesiastes"], correct:1 },
-{ q:"Meaning of Gospel?", a:["Good News","Holy Writing","Law"], correct:0 }
+{ clue:"Books in Catholic OT?", a:["39","46","27"], correct:1 },
+{ clue:"David defeated?", a:["Solomon","Samson","David"], correct:2 },
+{ clue:"Mount of Ten Commandments?", a:["Sinai","Tabor","Calvary"], correct:0 },
+{ clue:"First witness of Resurrection?", a:["Peter","Mary Magdalene","John"], correct:1 },
+{ clue:"Theological virtues?", a:["Peace Joy Kindness","Faith Hope Love","Wisdom Knowledge"], correct:1 },
+{ clue:"Lions den prophet?", a:["Daniel","Isaiah","Jeremiah"], correct:0 },
+{ clue:"Shortest verse?", a:["Jesus wept","Rejoice","Pray"], correct:0 },
+{ clue:"Peter denied Jesus how many times?", a:["1","2","3"], correct:2 },
+{ clue:"Book of 150 songs?", a:["Proverbs","Psalms","Ecclesiastes"], correct:1 },
+{ clue:"Meaning of Gospel?", a:["Good News","Holy Writing","Law"], correct:0 }
 ];
 
 // ================= SAINT SPEED CHALLENGE =================
-const saintChallengeQuestions = [
+/* const saintChallengeQuestions = [
 { clue:"Born in Sudan and known for forgiveness after great suffering.", a:["St. Josephine Bakhita","St. Monica","St. Joan of Arc","St. Therese of Lisieux"], correct:0 },
 { clue:"A young Ugandan martyr who stayed courageous in faith.", a:["St. Kizito","St. Augustine","St. Anthony of Egypt","St. Francis of Assisi"], correct:0 },
 { clue:"A North African saint who became a great teacher of the Church.", a:["St. Augustine of Hippo","St. Dominic Savio","St. Tarcisius","St. John Paul II"], correct:0 },
@@ -64,6 +64,8 @@ const saintChallengeQuestions = [
 { clue:"A young North African mother who showed great courage.", a:["St. Perpetua","St. Therese of Lisieux","St. Joan of Arc","St. Bakhita"], correct:0 },
 { clue:"Changed his life and became a peaceful monk in Egypt.", a:["St. Moses the Black","St. Charles Lwanga","St. Kizito","St. Tarcisius"], correct:0 }
 ];
+
+*/
 
 let challengeScore = 0;
 let challengeIndex = 0;
