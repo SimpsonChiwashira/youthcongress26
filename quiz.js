@@ -238,11 +238,11 @@ const saintChallengeQuestion = [
     a: ["Our Lady of Fatima Shrine", "Bondolfi Mission Shrine", "Mutemwa Leprosy Catholic Shrine", "Gokomere Marian Shrine"],
     correct: 1
   }
-]
+];
 
 /*
-const saintChallengeQuestions = [
-{ clue:"What is the traditional Shona instrument made of metal keys bound to a wooden soundboard inside a calabash?", a:["Marimba","Mbira","Hosho"], correct:1 },
+const saintCgit eQuestions = [
+{ clue:"Whatgit  traditional Shona instrument made of metal keys bound to a wooden soundgit nside a calabash?", a:["Marimba","Mbira","Hosho"], correct:1 }, 
 { clue:"If you visit elders in Zimbabwe to show respect, what gesture should you do?", a:["High five","Clapping hands (Kuombera)","Fist bump"], correct:1 },
 { clue:"What is Zimbabwe's national dish made from maize meal?", a:["Sadza","Mupunga","Amadumbe"], correct:0 },
 { clue:"Which waterfall is called 'Mosi-oa-Tunya'?", a:["Victoria Falls","Mutarazi Falls","Bridal Veil Falls"], correct:0 },
