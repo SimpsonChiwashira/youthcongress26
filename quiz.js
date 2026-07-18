@@ -38,7 +38,7 @@ const saintChallengeQuestions = [
 { clue:"African martyrs?", a:["Uganda Martyrs","Egypt Saints","Algeria Monks"], correct:0 },
 
 { clue:"Books in Catholic OT?", a:["39","46","27"], correct:1 },
-{ clue:"David defeated?", a:["Solomon","Samson","David"], correct:2 },
+{ clue:"David defeated?", a:["Solomon","Samson","Goliath"], correct:2 },
 { clue:"Mount of Ten Commandments?", a:["Sinai","Tabor","Calvary"], correct:0 },
 { clue:"First witness of Resurrection?", a:["Peter","Mary Magdalene","John"], correct:1 },
 { clue:"Theological virtues?", a:["Peace Joy Kindness","Faith Hope Love","Wisdom Knowledge"], correct:1 },
